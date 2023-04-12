@@ -1,51 +1,3 @@
-# ✨ So you want to sponsor a contest
-
-This `README.md` contains a set of checklists for our contest collaboration.
-
-Your contest will use two repos: 
-- **a _contest_ repo** (this one), which is used for scoping your contest and for providing information to contestants (wardens)
-- **a _findings_ repo**, where issues are submitted (shared with you after the contest) 
-
-Ultimately, when we launch the contest, this contest repo will be made public and will contain the smart contracts to be reviewed and all the information needed for contest participants. The findings repo will be made public after the contest report is published and your team has mitigated the identified issues.
-
-Some of the checklists in this doc are for **C4 (🐺)** and some of them are for **you as the contest sponsor (⭐️)**.
-
----
-
-# Repo setup
-
-## ⭐️ Sponsor: Add code to this repo
-
-- [ ] Create a PR to this repo with the below changes:
-- [ ] Provide a self-contained repository with working commands that will build (at least) all in-scope contracts, and commands that will run tests producing gas reports for the relevant contracts.
-- [ ] Make sure your code is thoroughly commented using the [NatSpec format](https://docs.soliditylang.org/en/v0.5.10/natspec-format.html#natspec-format).
-- [ ] Please have final versions of contracts and documentation added/updated in this repo **no less than 24 hours prior to contest start time.**
-- [ ] Be prepared for a 🚨code freeze🚨 for the duration of the contest — important because it establishes a level playing field. We want to ensure everyone's looking at the same code, no matter when they look during the contest. (Note: this includes your own repo, since a PR can leak alpha to our wardens!)
-
-
----
-
-## ⭐️ Sponsor: Edit this README
-
-Under "SPONSORS ADD INFO HERE" heading below, include the following:
-
-- [ ] Modify the bottom of this `README.md` file to describe how your code is supposed to work with links to any relevent documentation and any other criteria/details that the C4 Wardens should keep in mind when reviewing. ([Here's a well-constructed example.](https://github.com/code-423n4/2022-08-foundation#readme))
-  - [ ] When linking, please provide all links as full absolute links versus relative links
-  - [ ] All information should be provided in markdown format (HTML does not render on Code4rena.com)
-- [ ] Under the "Scope" heading, provide the name of each contract and:
-  - [ ] source lines of code (excluding blank lines and comments) in each
-  - [ ] external contracts called in each
-  - [ ] libraries used in each
-- [ ] Describe any novel or unique curve logic or mathematical models implemented in the contracts
-- [ ] Does the token conform to the ERC-20 standard? In what specific ways does it differ?
-- [ ] Describe anything else that adds any special logic that makes your approach unique
-- [ ] Identify any areas of specific concern in reviewing the code
-- [ ] Optional / nice to have: pre-record a high-level overview of your protocol (not just specific smart contract functions). This saves wardens a lot of time wading through documentation.
-- [ ] See also: [this checklist in Notion](https://code4rena.notion.site/Key-info-for-Code4rena-sponsors-f60764c4c4574bbf8e7a6dbd72cc49b4#0cafa01e6201462e9f78677a39e09746)
-- [ ] Delete this checklist and all text above the line below when you're ready.
-
----
-
 # ENS contest details
 - Total Prize Pool: $114,850 USDC 
   - HM awards: $63,750 USDC 
@@ -67,31 +19,64 @@ Automated findings output for the contest can be found [here](add link to report
 
 *Note for C4 wardens: Anything included in the automated findings output is considered a publicly known issue and is ineligible for awards.*
 
-[ ⭐️ SPONSORS ADD INFO HERE ]
-
 # Overview
 
-*Please provide some context about the code being audited, and identify any areas of specific concern in reviewing the code. (This is a good place to link to your docs, if you have them.)*
+# About ENS
+
+ENS is a decentralised naming service built on top of Ethereum, and designed to resolve a wide array of resources including blockchain addresses, decentralised content, and user profile information.
+
+Developer documentation can be found [here](https://docs.ens.domains/).
+
+Information on existing ENS deployments can be found [here](https://docs.ens.domains/ens-deployments).
+
+# Developer guide
+
+## Setup
+
+```
+git clone https://github.com/code-423n4/2022-11-ens
+cd 2022-11-ens
+yarn
+```
+
+## Running Tests
+
+```
+yarn test
+```
 
 # Scope
 
-*List all files in scope in the table below (along with hyperlinks) -- and feel free to add notes here to emphasize areas of focus.*
-
-*For line of code counts, we recommend using [cloc](https://github.com/AlDanial/cloc).* 
-
 | Contract | SLOC | Purpose | Libraries used |  
 | ----------- | ----------- | ----------- | ----------- |
-| [contracts/folder/sample.sol](contracts/folder/sample.sol) | 123 | This contract does XYZ | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
+| [contracts/dnsregistrar/DNSClaimChecker.sol](contracts/dnsregistrar/DNSClaimChecker.sol) | 61 | Uses the DNSSEC oracle to verify DNS name claims | |
+| [contracts/dnsregistrar/OffchainDNSResolver.sol](contracts/dnsregistrar/OffchainDNSResolver.sol) | 190 | CCIP-read resolver contract to handle gasless DNS name resolution | [ERC165](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/introspection/ERC165.sol) |
+| [contracts/dnsregistrar/RecordParser.sol](contracts/dnsregistrar/RecordParser.sol) | 30 | Parses space delimited key-value strings from DNS TXT records | |
+| [contracts/dnsregistrar/DNSRegistrar.sol](contracts/dnsregistrar/DNSRegistrar.sol) | 165 | DNS registrar contract; permits registering DNS names in ENS, using the DNSSEC oracle | [ERC165](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/introspection/ERC165.sol) |
+| [contracts/dnssec-oracle/BytesUtils.sol](contracts/dnssec-oracle/BytesUtils.sol) | 243 | Byte string manipulation utils | |
+| [contracts/dnssec-oracle/RRUtils.sol](contracts/dnssec-oracle/RRUtils.sol) | 308 | DNS Resource-Record (RR) parsing utils | |
+| [contracts/dnssec-oracle/algorithms/RSASHA1Algorithm.sol](contracts/dnssec-oracle/algorithms/RSASHA1Algorithm.sol) | 35 | Implementation of the DNSSEC RSASHA1 algorithm | |
+| [contracts/dnssec-oracle/algorithms/EllipticCurve.sol](contracts/dnssec-oracle/algorithms/EllipticCurve.sol) | 283 | Implementation of ECDSA in Solidity | |
+| [contracts/dnssec-oracle/algorithms/P256SHA256Algorithm.sol](contracts/dnssec-oracle/algorithms/P256SHA256Algorithm.sol) | 31 | Implementation of the DNSSEC P256SHA256 algorithm | |
+| [contracts/dnssec-oracle/algorithms/ModexpPrecompile.sol](contracts/dnssec-oracle/algorithms/ModexpPrecompile.sol) | 28 | Utility contract for using the modexp/RSA precompile | |
+| [contracts/dnssec-oracle/algorithms/RSASHA256Algorithm.sol](contracts/dnssec-oracle/algorithms/RSASHA256Algorithm.sol) | 34 | Implementation of the DNSSEC RSASHA256 algorithm | |
+| [contracts/dnssec-oracle/algorithms/RSAVerify.sol](contracts/dnssec-oracle/algorithms/RSAVerify.sol) | 12 | RSA signature verification | |
+| [contracts/dnssec-oracle/digests/SHA1Digest.sol](contracts/dnssec-oracle/digests/SHA1Digest.sol) | 16 | Implementation of the DNSSEC SHA1 digest | |
+| [contracts/dnssec-oracle/digests/SHA256Digest.sol](contracts/dnssec-oracle/digests/SHA256Digest.sol) | 13 | Implementation of the DNSSEC SHA256 digest | |
+| [contracts/dnssec-oracle/DNSSECImpl.sol](contracts/dnssec-oracle/DNSSECImpl.sol) | 258 | A stateless DNSSEC oracle | |
+| [contracts/dnssec-oracle/SHA1.sol](contracts/dnssec-oracle/SHA1.sol) | 218 | Implementation of the SHA1 hash function in Solidity | |
+| [contracts/utils/NameEncoder.sol](contracts/utils/NameEncoder.sol) | 43 | Converts names from dot-separated to DNS binary format | |
+| [contracts/utils/HexUtils.sol](contracts/utils/HexUtils.sol) | 54 | Parses hex strings into bytes32 | |
 
 ## Out of scope
 
-*List any files/contracts that are out of scope for this audit.*
+All files not listed above
 
 # Additional Context
 
-*Describe any novel or unique curve logic or mathematical models implemented in the contracts*
+We implement userspace versions of SHA1 and SECP256p1. SHA1 is required for some DNSSEC zones; we don't choose the hash, the zone owner does. SECP256p1 is likewise used in many zones, including those hosted by cloudflare. 
 
-*Sponsor, please confirm/edit the information below.*
+The offchain DNS resolver uses [EIP 3668](https://eips.ethereum.org/EIPS/eip-3668) (CCIP-Read) and [ENSIP-10](https://docs.ens.domains/ens-improvement-proposals/ensip-10-wildcard-resolution) to support gasless DNS-based name resolution.
 
 ## Scoping Details 
 ```
