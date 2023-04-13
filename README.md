@@ -55,24 +55,24 @@ yarn test
 
 | Contract | SLOC | Purpose | Libraries used |  
 | ----------- | ----------- | ----------- | ----------- |
-| [https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnsregistrar/DNSClaimChecker.sol](contracts/dnsregistrar/DNSClaimChecker.sol) | 61 | Uses the DNSSEC oracle to verify DNS name claims | |
-| [https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnsregistrar/OffchainDNSResolver.sol](contracts/dnsregistrar/OffchainDNSResolver.sol) | 190 | CCIP-read resolver contract to handle gasless DNS name resolution | [ERC165](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/introspection/ERC165.sol) |
-| [https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnsregistrar/RecordParser.sol](contracts/dnsregistrar/RecordParser.sol) | 30 | Parses space delimited key-value strings from DNS TXT records | |
-| [https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnsregistrar/DNSRegistrar.sol](contracts/dnsregistrar/DNSRegistrar.sol) | 165 | DNS registrar contract; permits registering DNS names in ENS, using the DNSSEC oracle | [ERC165](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/introspection/ERC165.sol) |
-| [https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/BytesUtils.sol](contracts/dnssec-oracle/BytesUtils.sol) | 243 | Byte string manipulation utils | |
-| [https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/RRUtils.sol](contracts/dnssec-oracle/RRUtils.sol) | 308 | DNS Resource-Record (RR) parsing utils | |
-| [https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/algorithms/RSASHA1Algorithm.sol](contracts/dnssec-oracle/algorithms/RSASHA1Algorithm.sol) | 35 | Implementation of the DNSSEC RSASHA1 algorithm | |
-| [https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/algorithms/EllipticCurve.sol](contracts/dnssec-oracle/algorithms/EllipticCurve.sol) | 283 | Implementation of ECDSA in Solidity | |
-| [https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/algorithms/P256SHA256Algorithm.sol](contracts/dnssec-oracle/algorithms/P256SHA256Algorithm.sol) | 31 | Implementation of the DNSSEC P256SHA256 algorithm | |
-| [https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/algorithms/ModexpPrecompile.sol](contracts/dnssec-oracle/algorithms/ModexpPrecompile.sol) | 28 | Utility contract for using the modexp/RSA precompile | |
-| [https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/algorithms/RSASHA256Algorithm.sol](contracts/dnssec-oracle/algorithms/RSASHA256Algorithm.sol) | 34 | Implementation of the DNSSEC RSASHA256 algorithm | |
-| [https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/algorithms/RSAVerify.sol](contracts/dnssec-oracle/algorithms/RSAVerify.sol) | 12 | RSA signature verification | |
-| [https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/digests/SHA1Digest.sol](contracts/dnssec-oracle/digests/SHA1Digest.sol) | 16 | Implementation of the DNSSEC SHA1 digest | |
-| [https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/digests/SHA256Digest.sol](contracts/dnssec-oracle/digests/SHA256Digest.sol) | 13 | Implementation of the DNSSEC SHA256 digest | |
-| [https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/DNSSECImpl.sol](contracts/dnssec-oracle/DNSSECImpl.sol) | 258 | A stateless DNSSEC oracle | |
-| [https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/SHA1.sol](contracts/dnssec-oracle/SHA1.sol) | 218 | Implementation of the SHA1 hash function in Solidity | |
-| [https://github.com/code-423n4/2023-04-ens/blob/main/contracts/utils/NameEncoder.sol](contracts/utils/NameEncoder.sol) | 43 | Converts names from dot-separated to DNS binary format | |
-| [https://github.com/code-423n4/2023-04-ens/blob/main/contracts/utils/HexUtils.sol](contracts/utils/HexUtils.sol) | 54 | Parses hex strings into bytes32 | |
+| [contracts/dnsregistrar/DNSClaimChecker.sol](https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnsregistrar/DNSClaimChecker.sol) | 61 | Uses the DNSSEC oracle to verify DNS name claims | |
+| [contracts/dnsregistrar/OffchainDNSResolver.sol](https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnsregistrar/OffchainDNSResolver.sol) | 190 | CCIP-read resolver contract to handle gasless DNS name resolution | [ERC165](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/introspection/ERC165.sol) |
+| [contracts/dnsregistrar/RecordParser.sol](https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnsregistrar/RecordParser.sol) | 30 | Parses space delimited key-value strings from DNS TXT records | |
+| [contracts/dnsregistrar/DNSRegistrar.sol](https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnsregistrar/DNSRegistrar.sol) | 165 | DNS registrar contract; permits registering DNS names in ENS, using the DNSSEC oracle | [ERC165](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/introspection/ERC165.sol) |
+| [contracts/dnssec-oracle/BytesUtils.sol](https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/BytesUtils.sol) | 243 | Byte string manipulation utils | |
+| [contracts/dnssec-oracle/RRUtils.sol](https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/RRUtils.sol) | 308 | DNS Resource-Record (RR) parsing utils | |
+| [contracts/dnssec-oracle/algorithms/RSASHA1Algorithm.sol](https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/algorithms/RSASHA1Algorithm.sol) | 35 | Implementation of the DNSSEC RSASHA1 algorithm | |
+| [contracts/dnssec-oracle/algorithms/EllipticCurve.sol](https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/algorithms/EllipticCurve.sol) | 283 | Implementation of ECDSA in Solidity | |
+| [contracts/dnssec-oracle/algorithms/P256SHA256Algorithm.sol](https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/algorithms/P256SHA256Algorithm.sol) | 31 | Implementation of the DNSSEC P256SHA256 algorithm | |
+| [contracts/dnssec-oracle/algorithms/ModexpPrecompile.sol](https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/algorithms/ModexpPrecompile.sol) | 28 | Utility contract for using the modexp/RSA precompile | |
+| [contracts/dnssec-oracle/algorithms/RSASHA256Algorithm.sol](https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/algorithms/RSASHA256Algorithm.sol) | 34 | Implementation of the DNSSEC RSASHA256 algorithm | |
+| [contracts/dnssec-oracle/algorithms/RSAVerify.sol](https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/algorithms/RSAVerify.sol) | 12 | RSA signature verification | |
+| [contracts/dnssec-oracle/digests/SHA1Digest.sol](https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/digests/SHA1Digest.sol) | 16 | Implementation of the DNSSEC SHA1 digest | |
+| [contracts/dnssec-oracle/digests/SHA256Digest.sol](https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/digests/SHA256Digest.sol) | 13 | Implementation of the DNSSEC SHA256 digest | |
+| [contracts/dnssec-oracle/DNSSECImpl.sol](https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/DNSSECImpl.sol) | 258 | A stateless DNSSEC oracle | |
+| [contracts/dnssec-oracle/SHA1.sol](https://github.com/code-423n4/2023-04-ens/blob/main/contracts/dnssec-oracle/SHA1.sol) | 218 | Implementation of the SHA1 hash function in Solidity | |
+| [contracts/utils/NameEncoder.sol](https://github.com/code-423n4/2023-04-ens/blob/main/contracts/utils/NameEncoder.sol) | 43 | Converts names from dot-separated to DNS binary format | |
+| [contracts/utils/HexUtils.sol](https://github.com/code-423n4/2023-04-ens/blob/main/contracts/utils/HexUtils.sol) | 54 | Parses hex strings into bytes32 | |
 
 ## Out of scope
 
