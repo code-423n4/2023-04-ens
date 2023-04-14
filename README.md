@@ -1,17 +1,16 @@
 # ENS contest details
-- Total Prize Pool: $114,850 USDC 
+- Total Prize Pool: $90,500 USDC 
   - HM awards: $63,750 USDC 
   - QA report awards: $7,500 USDC 
   - Gas report awards: $3,750 USDC 
-  - Judge awards: $14,600 USDC 
+  - Judge awards: $9,000 USDC 
   - Lookout awards: $6,000 USDC 
   - Scout awards: $500 USDC 
-  - Mitigation review contest: $18,750 USDC (*Opportunity goes to top 5 certified wardens based on placement in this contest.*)
 - Join [C4 Discord](https://discord.gg/code4rena) to register
 - Submit findings [using the C4 form](https://code4rena.com/contests/2023-04-ens-contest/submit)
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
 - Starts April 14, 2023 20:00 UTC 
-- Ends April 21, 2023 20:00 UTC 
+- Ends April 28, 2023 20:00 UTC 
 
 ## Automated Findings / Publicly Known Issues
 
