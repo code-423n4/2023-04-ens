@@ -1,0 +1,885 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-Q2-2023 / ens-apr14
+==============================================================
+
+[04/12/2023 16:51] kartoonjoy (pinned)
+👋 Hello and welcome to the contest channel for the **$90,500 USDC ENS** contest!
+
+📆 Contest opens 04/14/2023 20:00 (20:00 UTC) and runs through 04/28/2023 20:00 (20:00 UTC) (14 days).
+
+Please give a warm welcome to the ENS team, particularly @Jeff Lau and @nickjohnson, who will be available for questions either here in the channel or via DM in the **BST timezone(s)**.
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this contest, consider enabling notifications for this channel. 🐺 ⏰
+
+Contest Page: https://code4rena.com/contests/2023-04-ens-contest
+
+{Reactions}
+POGGERS (6) 
+
+[04/12/2023 16:51] kartoonjoy
+Pinned a message.
+
+
+[04/12/2023 16:52] kartoonjoy
+Hey all 👋! Let's please limit conversation until the contest begins. Thanks!
+
+{Reactions}
+🤝 
+
+[04/13/2023 20:09] 0xkazimm
+Hey @Jeff Lau  and @nickjohnson  hope we make this protocol much secure and saver for all users together 🙏🏻
+
+{Reactions}
+👍 (4) 
+
+[04/14/2023 20:31] rolezn (pinned)
+**Automated Findings: ** https://gist.github.com/YinjiDawn/8442dfeff30af72ac83cd8ac657ef954
+
+
+[04/14/2023 20:32] kartoonjoy
+Pinned a message.
+
+
+[04/14/2023 20:33] kartoonjoy (pinned)
+Wardens, please note that the automated findings output is posted below. 
+
+These are considered publicly known issues and are not eligible for awards.
+
+**Automated findings: **
+ https://gist.github.com/YinjiDawn/8442dfeff30af72ac83cd8ac657ef954
+
+**Code4rena submission guidelines and automated findings policy: **
+https://docs.code4rena.com/roles/wardens/submission-policy#automated-findings-ineligible
+
+This will also be linked in the contest README file shortly.
+
+{Reactions}
+👍🏻 (2) 
+
+[04/14/2023 20:33] kartoonjoy
+Pinned a message.
+
+
+[04/14/2023 21:06] popular
+regarding slither not working on the repo, it doesn't work if you just do `slither .` but you can run it on individual subfolders in `contracts/` without issue
+e.g.:
+`slither ./contracts/dnsregistrar --solc-remaps "@ensdomains/=./node_modules/@ensdomains/ @openzeppelin/=./node_modules/@openzeppelin/"`
+`slither ./contracts/dnssec-oracle --solc-remaps @ensdomains/=./node_modules/@ensdomains/`
+
+
+[04/14/2023 21:08] popular
+(it comes back without any red 😄 )
+
+
+[04/14/2023 21:39] aba1842
+Hey, the `Scoping Details` on the github page indicates:
+```- How many contracts are in scope?:   21
+- Total SLoC for these contracts?:  2103```
+
+But there are 18 contracts in scope with 2022 SLOC (from the Scope section)
+
+Are there any contracts missing? @kartoonjoy  @Jeff Lau @nickjohnson
+
+
+[04/14/2023 21:56] bitspinner
+Minimal Slither patch:
+
+filename: `crytic_compile/platform/hardhat.py`
+```bash
+# find local file
+find / -name "hardhat.py" -path "*crytic_compile/platform*" 2>/dev/null
+```
+
+In file, find/replace:
+
+find
+```
+source_unit.ast = info["ast"]
+```
+
+replace with
+```
+try:
+  source_unit.ast = info["ast"]
+except:
+  source_unit.ast = info["legacyAST"]
+```
+
+Seems to be a problem with crytic-compile when dealing with DummyOldResolver using compiler v. 0.4.11
+
+{Reactions}
+👍 (6) 
+
+[04/14/2023 22:30] illilli000
+the table is what is in scope - ignore the other section
+
+{Reactions}
+👍 thankyou (3) 🫡 
+
+[04/14/2023 22:39] fabienmorrow
+@Jeff Lau Is there a precedent audit covering (maybe partially) your codebase ? if yes, is there a report available ?
+
+{Reactions}
+bored (3) 
+
+[04/15/2023 01:32] 0xkazimm
+is there any resource that describe the functions inside the codebases ?
+
+
+[04/15/2023 01:32] 0xkazimm
+docs or something like that ?
+
+
+[04/15/2023 07:16] sheldonholmgren
+Does anyone know whether there is an easy way to convert the docs (https://docs.ens.domains/, https://github.com/ensdomains/docs) to a PDF?
+
+
+[04/15/2023 08:01] h3cker
+adobe acrobat
+
+
+[04/15/2023 08:01] h3cker
+who is is hackin @ ENS all weekend
+
+
+[04/15/2023 08:29] sheldonholmgren
+This seems to work: https://gist.github.com/clemsos/9e480b2b792b57f1b22d (after some tweaking)
+
+{Embed}
+https://gist.github.com/clemsos/9e480b2b792b57f1b22d
+Build Gitbook PDF using Pandoc
+Build Gitbook PDF using Pandoc. GitHub Gist: instantly share code, notes, and snippets.
+Code4rena - ARCHIVE-Q2-2023 - ens-apr14 [1095751728365830227].txt_Files/gist-og-image-17482.png
+
+
+[04/15/2023 08:32] h3cker
+i was able to generate slither report if anyone wants it
+
+
+[04/15/2023 14:02] 0xkazimm
+@Jeff Lau is there any explaining docs or resources for the function inside any contract ?
+
+
+[04/15/2023 18:43] parsely.
+@Jeff Lau @nickjohnson Please may I ask, to understand not because I think its an issue. Why does the `resolve` function in  OffchainDNSResolver.sol Revert with callback details, I understand that it gets the callback, but how does that mechanism work? (or just point me to in the right direction to research) Please?
+
+
+[04/15/2023 20:00] popular
+https://eips.ethereum.org/EIPS/eip-3668
+
+{Embed}
+https://eips.ethereum.org/EIPS/eip-3668
+CCIP Read provides a mechanism to allow a contract to fetch external data.
+
+
+[04/15/2023 20:00] popular
+It follows ccip read standard
+
+
+[04/16/2023 09:14] h3cker
+any luck anyone ? If you wanna team up DM me
+
+
+[04/16/2023 13:50] 0xkazimm
+did anyone answering question in this contest ?
+
+
+[04/16/2023 13:56] aba1842
+it may be that this weekend is Easter for some, probably next week they will be more active 🙂 no rush
+
+{Reactions}
+❤️ (2) 
+
+[04/16/2023 13:56] 0xkazimm
+oh that's may be the reason, sorry i did not know about this 👍🏻
+
+{Reactions}
+👍 🤍 (2) 🫡 
+
+[04/16/2023 18:03] hex_sadeeq
+Would be helpful I guess https://eips.ethereum.org/EIPS/eip-137
+
+{Embed}
+https://eips.ethereum.org/EIPS/eip-137
+ERC-137: Ethereum Domain Name Service - Specification
+
+{Reactions}
+👍 
+
+[04/16/2023 20:46] aba1842
+never thought I'd see a DNS parser in Solidity, I don't know if to be amazed or terrified ha ha
+
+
+[04/16/2023 21:08] bshramin
+Does anyone know why they preferred to use `using BytesUtils for *;` instead of `using BytesUtils for bytes;`
+
+
+[04/17/2023 20:29] sp1cymeatball
+`npm i` fails with pic related
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2023 - ens-apr14 [1095751728365830227].txt_Files/log-36DE8.png
+
+
+[04/17/2023 21:15] 0xkazimm
+Try yarn instead of npm, it worked for me
+
+{Reactions}
+👍 (2) 
+
+[04/18/2023 08:12] sp1cymeatball
+Thanks! I've managed to install it with `npm` tho. If anyone encounters the same error, just delete this line in `package.json`
+```
+"@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.3.0-beta.13",
+```
+Project is compiling and running tests without it.
+
+{Reactions}
+❤️ 
+
+[04/18/2023 19:23] chaindev
+https://docs.ens.domains/bug-bounty-program
+
+
+[04/18/2023 19:23] chaindev
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2023 - ens-apr14 [1095751728365830227].txt_Files/image-CA0E9.png
+
+
+[04/18/2023 19:23] chaindev
+The amount is much higher than this contest🙄
+
+
+[04/18/2023 19:30] aba1842
+that is for the already deployed code, probably on Immunafi or wherever. What we have is a new project. But, probably, after this contest/fixes are done and when this code will be deployed, it will probably have the same bounties
+
+{Reactions}
+👍🏻 
+
+[04/18/2023 19:32] chaindev
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2023 - ens-apr14 [1095751728365830227].txt_Files/image-0C5CC.png
+
+
+[04/18/2023 19:32] chaindev
+`ensdomains/ens-contracts` is just same as this contest repo
+
+
+[04/18/2023 19:34] chaindev
+But I love C4 more, because they note `Important Legal Information`
+
+
+[04/18/2023 19:34] chaindev
+`The bug bounty program is a discretionary rewards program for the ENS community to encourage and reward those who are helping to improve the platform. It is not a competition. You should know that we can cancel the program at any time, and awards are at the sole discretion of the ENS team.`
+
+
+[04/18/2023 19:34] chaindev
+C4 is more trustful
+
+{Reactions}
+👍 (5) 
+
+[04/18/2023 19:35] aba1842
+I see
+
+
+[04/19/2023 14:03] malfurionwhitehat
+would you be so kind to share it here?
+
+
+[04/19/2023 14:07] h3cker
+Sure here it is below 👇
+
+
+[04/19/2023 14:07] malfurionwhitehat
+thanks!
+
+
+[04/20/2023 06:02] akshaysrivastav
+Are sponsors available for questions?
+
+
+[04/20/2023 06:06] akshaysrivastav
+@Jeff Lau @nickjohnson
+
+
+[04/20/2023 08:36] romans#4134
+fix this plis
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2023 - ens-apr14 [1095751728365830227].txt_Files/image-6E15F.png
+
+{Reactions}
+👍 
+
+[04/20/2023 11:48] malfurionwhitehat
+hey, where can I check ENS's implementation contract that's being used e.g. by `DNSRegistrar`
+
+{Reactions}
+🙏 (2) 
+
+[04/20/2023 12:17] malfurionwhitehat
+Another question: where can I find out more about the difference between `DNSRegistrar.proveAndClaim` and `DNSRegistrar.proveAndClaimWithResolver`? The second one is not documented in the code
+
+
+[04/20/2023 13:07] csjaybit
+this looks too hard lol
+
+
+[04/20/2023 13:08] csjaybit
+I cant understand anything
+
+
+[04/20/2023 13:08] csjaybit
+and guess what I dont know assemblu
+
+
+[04/20/2023 13:36] 0xweiss
+Where less people understand is where you should look more. Less eyes, more possibility to spot a bug, do not give up
+
+{Reactions}
+👀 (7) 👍 (5) 
+
+[04/20/2023 13:41] csjaybit
+yeah just started learning yul
+
+
+[04/20/2023 14:56] malfurionwhitehat
+I recommend using chatgpt for that
+
+```
+Explain this to me
+
+  assembly {
+            ret := keccak256(add(add(self, 32), offset), len)
+   }
+
+
+This appears to be a snippet of code written in Assembly language for a smart contract on the Ethereum blockchain. Specifically, it is calculating the Keccak-256 hash of a portion of the contract's memory.
+
+Let me break down the code for you:
+
+"assembly" indicates that the following code is written in Assembly language.
+"ret" is likely a variable that will hold the resulting hash value.
+"keccak256" is a hashing algorithm used in Ethereum to create a unique 256-bit hash of data.
+"add" is an operation that adds two values together.
+"self" is a reference to the contract's own address in memory.
+"32" is an offset value indicating the number of bytes to skip over from the start of the memory block.
+"offset" is likely another variable indicating the number of bytes to skip over from the start of the memory block.
+"len" is likely another variable indicating the length of the memory block to be hashed.
+
+So, in essence, this code is taking a block of memory starting at the memory address self + 32 + offset and with a length of len, and calculating the Keccak-256 hash of that block. The resulting hash value will be stored in the ret variable.
+```
+
+
+[04/20/2023 15:04] csjaybit
+Nice chatgpt helps
+
+{Reactions}
+🔥 (4) 
+
+[04/21/2023 02:37] akshaysrivastav
+@kartoonjoy
+
+
+[04/21/2023 03:00] moop.pi
+This is probably a dumb question but why is there a need for resolvers if the registry can keep a mapping of names to address?
+
+
+[04/21/2023 05:22] bean.eth2
+resolver can exercise custom logic?
+
+{Reactions}
+👍 
+
+[04/21/2023 09:28] kartoonjoy
+Hi there, did you need me or a sponsor?
+
+
+[04/21/2023 09:37] akshaysrivastav
+I am trying to reach out to sponsors, have asked some questions in DM. Still waiting for their response.
+So I just wanted to confirm if there is any availability issue or some timezone restriction etc with the sponsors
+
+
+[04/21/2023 09:38] kartoonjoy
+Gotcha. Their availability should be according to the BST but will see if we can bring them into the room. Thanks for the heads up.
+
+{Reactions}
+🙏 
+
+[04/21/2023 13:07] nickjohnson
+Hi, happy to answer any questions, just tag me!
+
+
+[04/21/2023 13:07] eme0242
+I sent you a dm @nickjohnson
+
+
+[04/21/2023 13:09] nickjohnson
+Sorry about that. I get a lot of discord spam and hadn't checked my message requests
+
+{Reactions}
+thankyou 
+
+[04/21/2023 13:09] nickjohnson
+Will respond to everyone now
+
+
+[04/21/2023 13:15] eme0242
+okay
+
+
+[04/21/2023 13:31] nickjohnson
+If I haven't responded to anyone, please ping me again
+
+{Reactions}
+thankyou (2) 
+
+[04/21/2023 17:41] igingu
+Who signs the last RRSet? Is it ENS or is it the user?
+
+
+[04/21/2023 17:48] d3e4
+@nickjohnson I sent a DM
+
+
+[04/21/2023 19:49] malfurionwhitehat
+hi @nickjohnson 
+where can I check ENS's implementation contract that's being used e.g. by DNSRegistrar
+
+
+[04/21/2023 20:19] nickjohnson
+Which contract?
+
+
+[04/21/2023 20:19] nickjohnson
+They're all signed by the matching DNS keys
+
+
+[04/22/2023 03:21] lukejohn_
+can I have some rdata example? https://github.com/code-423n4/2023-04-ens/blob/45ea10bacb2a398e14d711fe28d1738271cd7640/contracts/dnsregistrar/DNSClaimChecker.sol#L47
+
+{Embed}
+https://github.com/code-423n4/2023-04-ens/blob/45ea10bacb2a398e14d711fe28d1738271cd7640/contracts/dnsregistrar/DNSClaimChecker.sol
+2023-04-ens/DNSClaimChecker.sol at 45ea10bacb2a398e14d711fe28d17382...
+Contribute to code-423n4/2023-04-ens development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q2-2023 - ens-apr14 [1095751728365830227].txt_Files/03188156-d214-4288-b0e7-6568842e60d9-C9D18
+
+
+[04/22/2023 13:04] malfurionwhitehat
+There are some examples on the test files
+
+
+[04/23/2023 11:28] 0x73696d616f
+why is the ENSRegistry out of scope?
+
+{Reactions}
+👍 (2) 
+
+[04/23/2023 12:05] igingu
+Hi @nickjohnson I dmed you with some questions if you can please assist, thanks!
+
+
+[04/23/2023 20:13] lilyjjo
+@nickjohnson sent you a dm with a question
+
+
+[04/24/2023 06:42] devabdee
+dude! fr? this bot is just too good 🔥 👏
+
+{Reactions}
+🔥 (3) 
+
+[04/24/2023 07:48] aba1842
+I would recommend it putting med, low, nc, gas as order. You need to tactically scroll to even reach those. But yeah, it's a good bot
+
+{Reactions}
+👆 (3) 
+
+[04/24/2023 13:41] eme0242
+@nickjohnson I sent a DM
+
+
+[04/24/2023 18:46] malfurionwhitehat
+hi @nickjohnson I DMed you with some questions
+
+
+[04/24/2023 18:47] acegawd
+DM @nickjohnson
+
+
+[04/24/2023 23:09] dec3ntraliz3d
+If anyone else is struggling like me, to understand how DNSSEC works. Feel free to watch these two videos.
+
+https://youtu.be/4qlIim15xwM   - RRSIG, RRSet, RR , DNSKEY, KSK , ZSK 
+https://youtu.be/YCk2WI-Fbtk  - DS  Records, Root Anchors
+
+{Embed}
+LearnCantrill
+https://www.youtube.com/watch?v=4qlIim15xwM
+DNS 101 Miniseries - #6 - How DNSSEC Works within a Zone
+DNSSEC strengthens authentication in DNS using digital signatures based on public key cryptography. With DNSSEC, it's not DNS queries and responses themselves that are cryptographically signed, but rather DNS data itself is signed by the owner of the data.
+
+This video steps through how DNSSEC signs and validates resource records (RRSETS) within ...
+Code4rena - ARCHIVE-Q2-2023 - ens-apr14 [1095751728365830227].txt_Files/maxresdefault-68362.jpg
+
+{Embed}
+LearnCantrill
+https://www.youtube.com/watch?v=YCk2WI-Fbtk
+DNS 101 Miniseries - #7 - DNSSEC Chain of Trust
+DNSSEC strengthens authentication in DNS using digital signatures based on public key cryptography. With DNSSEC, it's not DNS queries and responses themselves that are cryptographically signed, but rather DNS data itself is signed by the owner of the data.
+
+This video shows how the chain of TRUST is created between PARENT and CHILD zones within ...
+Code4rena - ARCHIVE-Q2-2023 - ens-apr14 [1095751728365830227].txt_Files/maxresdefault-3A274.jpg
+
+{Reactions}
+👍 (10) ❤️ (6) 😃 elmofire 
+
+[04/25/2023 14:33] chaduke3730
+what will compareNames return exactly?
+
+
+[04/25/2023 14:33] chaduke3730
+https://github.com/code-423n4/2023-04-ens/blob/45ea10bacb2a398e14d711fe28d1738271cd7640/contracts/dnssec-oracle/RRUtils.sol#L275
+
+{Embed}
+https://github.com/code-423n4/2023-04-ens/blob/45ea10bacb2a398e14d711fe28d1738271cd7640/contracts/dnssec-oracle/RRUtils.sol
+2023-04-ens/RRUtils.sol at 45ea10bacb2a398e14d711fe28d1738271cd7640...
+Contribute to code-423n4/2023-04-ens development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q2-2023 - ens-apr14 [1095751728365830227].txt_Files/03188156-d214-4288-b0e7-6568842e60d9-C9D18
+
+
+[04/25/2023 14:33] chaduke3730
+@dec3ntraliz3dthanks appreciate it
+
+
+[04/25/2023 18:07] nickjohnson
+It functions the same as C strcmp - it returns a positive, zero, or negative number depending on the relative order of the two input values.
+
+
+[04/25/2023 18:07] nickjohnson
+The exact values do not matter
+
+
+[04/25/2023 23:11] chaduke3730
+got it, just focus on the sign then
+
+
+[04/25/2023 23:11] chaduke3730
+@nickjohnson
+
+
+[04/26/2023 05:55] nickjohnson
+Yup
+
+
+[04/26/2023 12:27] evokid
+Do you guys use any of IUUPSUpgradreable implantation or proxy for future upgrade ?
+
+
+[04/26/2023 12:27] nickjohnson
+No.
+
+{Reactions}
+👍🏻 
+
+[04/26/2023 12:49] evokid
+Dmed -)
+
+
+[04/27/2023 13:23] d3e4
+Why is RecordParser not used?
+
+
+[04/27/2023 21:37] acegawd
+Dmed @nickjohnson
+
+
+[04/28/2023 17:07] acegawd
+@Jeff Lau Are you available for a DM?
+
+
+[04/28/2023 17:17] acegawd
+@kartoonjoy need some help reaching sponsors, thank you.
+
+
+[04/28/2023 17:35] kartoonjoy
+Hi @nickjohnson and @Jeff Lau. Are are either of you available for the last hours of the audit?
+
+
+[04/28/2023 18:23] nickjohnson
+Hi. I'm available at the moment.
+
+{Reactions}
+thankyou 
+
+[04/28/2023 18:26] nickjohnson
+It's available for use by custom resolvers but isn't required for the core implementation
+
+
+[04/28/2023 18:36] kartoonjoy
+@0xmint did you get what you needed?
+
+{Reactions}
+👍 
+
+[04/28/2023 20:02] C4
+**🚨 CONTEST ALERT**
+
+@🐺wardens The **ENS** contest is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: The sponsor team and judge will review the findings over the next couple of weeks. Keep an eye on #📢announcements for regular updates on how the contest is progressing through awarding 🤑🏆, judging 🧑‍⚖️ and reporting 📜. Feel free to ping a Contest Admin if you have questions along the way!
+
+{Reactions}
+🎉 (17) 🫡 (9) 
+
+[04/28/2023 20:37] _k42
+👽 🔥 Hype! 🔥 👽 I wish everyone who took part a solid return for your efforts 🙏
+
+{Reactions}
+🫡 (8) ✅ (3) 
+
+[05/09/2023 07:19] chaduke3730
+Goo luck. To all
+
+
+[05/15/2023 15:29] .hangyaku
+ayy thank you, this was my first ever contest, I was only able to submit gas optimisations and lows tho
+
+{Reactions}
+🦾 (2) 🚀 
+
+[05/15/2023 16:04] _k42
+Thats still valid progress my g! 🦾 All steps in the right direction, gas (mana 😂 ) reports enable more intimacy with the code, therefore your brain be figuring out better logic patterns for future audits ✅
+
+
+[05/15/2023 20:03] .hangyaku
+Thank you, means a lot, really needed that boost to continue in the audit space because of the learning cure, but it will be worth it in the end ig, after all nothing great can be achieved easily
+
+{Reactions}
+🦾 ✅ 🦋 
+
+[05/15/2023 20:10] 0xstalin
+don't feel discouraged because of the results you got on this contest, to be honest, this codebase is one of the wildest I've ever looked at 🙂
+
+
+[05/15/2023 20:12] .hangyaku
+I'm just starting out really, so I'm just trying to get my hands dirty, I definitely need to study a lot more to be able to find highs and mediums , also haha yeah ENS was pretty wild
+
+
+[05/16/2023 20:09] liveactionllamac4
+:code4rena: 💸 🎉 Awards for **ENS**:
+
+$23,845.88 USDC » @Trust 
+$11,952.84 USDC » @MalfurionWhitehat 
+$5,411.66 USDC » @Holmgren  
+$4,753.89 USDC » @auditor0517  
+$3,622.13 USDC » @chaduke 
+$2,532.09 USDC » @eierina 
+$2,463.53 USDC » @hihen 
+$2,361.87 USDC » @nobody2018 
+$2,167.51 USDC » @SaharAP  
+$1,667.31 USDC » @Lilyjjo 
+$1,588.85 USDC » @Sathish9098  
+$1,200.47 USDC » @Bitspinner 
+$1,200.47 USDC » @AkshaySrivastav 
+$988.86 USDC » @JCN 
+$760.66 USDC » @NiSeR 
+$760.66 USDC » @d3e4 
+$754.35 USDC » @bin2chen 
+$694.56 USDC » @rvierdiiev 
+$694.56 USDC » @Parad0x  
+$637.07 USDC » @0xSmartContract 
+$637.07 USDC » @ABA 
+$637.07 USDC » @0xcatellatech 
+$637.07 USDC » @0xAgro 
+$637.07 USDC » @brgltd  
+$179.58 USDC » @naman1778 
+$119.79 USDC » @saneryee 
+$119.79 USDC » @openwide  
+$119.79 USDC » @descharre 
+$59.79 USDC » @Eurovickk  
+$59.79 USDC » @Jorgect 
+$59.79 USDC » @larsson 
+$59.79 USDC » @J4de 
+$59.79 USDC » @Bauchibred 
+$59.79 USDC » @codeslide 
+$59.79 USDC » @Shyn  
+$59.79 USDC » @RaymondFam 
+$59.79 USDC » @matrix_0wl  
+$59.79 USDC » @MohammedRizwan 
+$59.79 USDC » @0xTheC0der 
+$59.79 USDC » @0x73696d616f 
+$59.79 USDC » @hassan-truscova  
+$59.79 USDC » @j4ld1na  
+$59.79 USDC » @iceBear  
+$59.79 USDC » @recep  
+$59.79 USDC » @Jerry0x 
+$59.79 USDC » @tsar  
+$59.79 USDC » @schrodinger  
+$59.79 USDC » @code-cipher 
+$59.79 USDC » @Dyear  
+$59.79 USDC » @favelanky 
+$59.79 USDC » @urataps  
+$59.79 USDC » ArbitraryExecution (@jawn, @wanaks, @Alex Segura, @CodeBeholder, @WGMIApe, @pbwaffles, and @Yowl)
+$59.79 USDC » @SAAJ  
+$59.79 USDC » @tnevler 
+$59.79 USDC » @lukris02 
+$59.79 USDC » @pontifex  
+$59.79 USDC » @Josiah 
+$59.79 USDC » @Udsen  
+$59.79 USDC » @Shubham
+
+🏁 Findings summary
+---------------------------
+High risk findings: 0
+Med risk findings: 21 total, 7 unique
+Gas reports: 8
+QA reports: 45
+
+Awards will be distributed on Polygon within the next week. Congratulations, everyone! 💸 💸 💸
+
+Note: If you participated in this audit and don’t see your name on this list, please wait until the report is published and the findings repo is made public to check on your submissions.
+
+{Reactions}
+hi5 (17) 👀 (6) 👍 (5) 
+
+[05/16/2023 20:19] shubh0412
+Last but still grateful 😅🫡
+
+{Reactions}
+💜 (8) 💪 (5) 🚀 (5) 
+
+[05/16/2023 20:19] bitspinner
+Wow, thanks! Kudos to the sponsor for the awesome project and the judges for sifting through all the submissions!
+
+{Reactions}
+hi5 (4) 💜 (2) 
+
+[05/16/2023 20:49] eme0242
+@Trust does it again
+
+
+[05/16/2023 20:49] eme0242
+Congrats guys
+
+
+[05/16/2023 21:05] saharap
+My first med finding :hearteyesrobot:
+
+{Reactions}
+hi5 (12) 🥳 (7) 👏 (5) 
+
+[05/16/2023 21:24] malfurionwhitehat
+Wow #2! Only behind the legendary @Trust 
+I'm so happy
+
+{Reactions}
+hi5 (16) 🔥 (17) 🕊️ (3) 👏 (3) 
+
+[05/16/2023 21:59] petrichor0961
+High risk ...
+Mind blowing protocol
+
+
+[05/16/2023 22:01] hunter_w3b
+Not my name on list🙂
+
+{Reactions}
+👍 😫 
+
+[05/17/2023 06:36] 0xrizwan
+Congrats Frens!!!
+
+
+[05/17/2023 10:34] .hangyaku
+umm...I submitted 7 total gas optimisation techniques in one single report, any idea why my name isn't on the list?
+
+
+[05/17/2023 16:54] hunter_w3b
+I submitted 17 total gas optimization  😂   alot of them imo correct
+
+
+[05/17/2023 16:55] .hangyaku
+lol so why aren't we mentioned then 😢
+
+
+[05/17/2023 16:55] hunter_w3b
+imo because of bot 🦾
+
+
+[05/17/2023 16:57] .hangyaku
+but I'm sure that the bot hadn't figured out all the gas optimisation techniques
+
+
+[05/17/2023 16:57] .hangyaku
+this is disappointing lol
+
+
+[05/17/2023 17:04] hunter_w3b
+:cyberheart: :10_10:
+
+
+[05/17/2023 17:12] .hangyaku
+lol
+
+
+[05/18/2023 07:49] sheldonholmgren
+Very much looking forward to the final report. Can't wait to see what 7 Mediums have been hiding in this codebase.
+
+{Reactions}
+🚀 (4) 💜 (5) 
+
+[05/18/2023 12:18] naman1778#5622
+Has anyone received there rewards?
+
+
+[05/18/2023 15:38] t1moh
+They will publish once payouts sent
+
+
+[05/18/2023 16:31] angry_mustache_man
+I guess they have already published it in the 'announcements' section
+
+
+[05/24/2023 08:34] hunter_w3b
+Any judge of this contest?
+
+
+[05/25/2023 15:49] lsdan
+You can DM me if you'd like to discuss particulars
+
+
+[05/25/2023 17:09] hunter_w3b
+Yes why not thanks
+
+
+[06/08/2023 02:15] tamayonft
+Sorry guys I just want to know how long is the payout
+
+
+[06/09/2023 09:43] aba1842
+they have been sent a long time ago https://discord.com/channels/810916927919620096/810929015509483554/1108477905677336576
+For some reason, C4 staff does not post in the contest channels when payouts are done or when the reports are out. You need to follow announcements/the newsletter for that
+
+
+[06/15/2023 12:13] sheldonholmgren
+Will there be an announcement in this channel when the report goes public?
+
+
+[06/15/2023 16:17] 0xagro
+🙏
+
+
+[07/19/2023 08:14] sheldonholmgren
+Still waiting for the report 😦
+
+
+==============================================================
+Exported 145 message(s)
+==============================================================
