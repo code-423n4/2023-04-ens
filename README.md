@@ -14,9 +14,11 @@
 
 ## Automated Findings / Publicly Known Issues
 
-Automated findings output for the contest can be found [here](https://gist.github.com/YinjiDawn/8442dfeff30af72ac83cd8ac657ef954) within an hour of contest opening.
+Automated findings output for the contest can be found [here](https://gist.github.com/liveactionllama/6a852871036a324c234151ba02fa2377)\* within an hour of contest opening.
 
-*Note for C4 wardens: Anything included in the automated findings output is considered a publicly known issue and is ineligible for awards.*
+Note for C4 wardens: Anything included in the automated findings output is considered a publicly known issue and is ineligible for awards.
+
+\**The original gist link was discovered to no longer be accessible, so it has been replaced with a new working link as of December 14, 2023.*
 
 # Overview
 
